@@ -19,4 +19,8 @@ export default {
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.debug {
+  border: 1px solid black;
+}
 </style>

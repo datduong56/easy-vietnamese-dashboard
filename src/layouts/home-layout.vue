@@ -33,7 +33,7 @@
               <v-list-item-title>Thông tin cá nhân</v-list-item-title>
             </v-list-item>
             <v-divider />
-            <v-list-item>
+            <v-list-item exact link to="/sign-in">
               <v-list-item-title>Đăng xuất</v-list-item-title>
             </v-list-item>
           </v-list>

@@ -28,7 +28,14 @@
                 <div @click.stop="">Ghi nhớ đăng nhập</div>
               </template>
             </v-checkbox>
-            <v-btn elevation="0" color="warning">Đăng nhập</v-btn>
+            <v-btn
+              elevation="0"
+              color="warning"
+              link
+              to="/"
+              class="login-button"
+              >Đăng nhập</v-btn
+            >
           </div>
         </v-form>
       </v-col>
@@ -60,5 +67,9 @@ export default Vue.extend({
 .form-wrapper {
   width: 60%;
   margin: 25% auto;
+}
+
+.login-button {
+  width: 100%;
 }
 </style>

@@ -66,11 +66,3 @@ export default Vue.extend({
   }),
 });
 </script>
-
-<style scoped>
-.username-area {
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-}
-</style>

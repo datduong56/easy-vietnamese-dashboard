@@ -1,19 +1,20 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
-      <v-expansion-panels flat>
-        <v-expansion-panel v-for="(item, i) in 5" :key="i">
-          <v-expansion-panel-header>
-            Item {{ i + 1 }}
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
+      <v-list>
+        <v-list-item-group v-model="selectedItem" color="primary">
+          <v-list-item
+            v-for="(item, i) in items2"
+            :key="i"
+            link
+            :to="item.route"
+          >
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
     </v-navigation-drawer>
 
     <v-app-bar app dense class="navbar" flat>
@@ -43,9 +44,8 @@
 
     <v-main class="grey lighten-3">
       <v-container>
-        <v-sheet height="500">
-          <slot name="chart"></slot>
-        </v-sheet>
+        <slot name="chart"></slot>
+        <slot></slot>
       </v-container>
     </v-main>
   </v-app>
@@ -64,6 +64,12 @@ export default Vue.extend({
       { title: "Click Me" },
       { title: "Click Me" },
       { title: "Click Me 2" },
+    ],
+    selectedItem: 1,
+    items2: [
+      { text: "Trang chủ", route: "/" },
+      { text: "Bài học", route: "/lessons" },
+      { text: "Người dùng", route: "/users" },
     ],
   }),
 });

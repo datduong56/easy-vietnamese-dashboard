@@ -1,17 +1,17 @@
 <template>
-  <HomeLayout>
+  <Layout>
     <Charts slot="chart" />
-  </HomeLayout>
+  </Layout>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Charts from "@/components/Charts.vue";
-import HomeLayout from "@/layouts/home-layout.vue";
+import Layout from "@/layouts/layout.vue";
 
 export default Vue.extend({
   name: "Home",
-  components: { HomeLayout, Charts },
+  components: { Layout, Charts },
 });
 </script>
 

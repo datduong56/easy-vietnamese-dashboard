@@ -6,10 +6,12 @@
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
-          label="Search"
-          single-line
           hide-details
-        ></v-text-field>
+          outlined
+          label="Tìm kiếm"
+          dense
+          clearable
+        />
       </v-card-title>
       <v-data-table
         :headers="headers"

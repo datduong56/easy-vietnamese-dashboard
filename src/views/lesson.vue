@@ -14,6 +14,7 @@
         />
       </v-card-title>
       <v-data-table
+        dense
         :headers="headers"
         :items="desserts"
         :items-per-page="5"
@@ -54,7 +55,7 @@ export default Vue.extend({
     ],
     desserts: [
       {
-        name: "Frozen Yogurt - 1",
+        name: "Frozen Yogurt",
       },
       {
         name: "Frozen Yogurt",

@@ -2,6 +2,7 @@
   <Layout>
     <v-card>
       <v-card-title>
+        <v-btn class="mr-10" color="warning">Thêm mới</v-btn>
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"

@@ -1,5 +1,6 @@
 import { login } from "@/services/auth";
 import firebase from "@/services/firebase-config.js";
+import { setToken } from "@/services/connection-instance";
 
 const authModule = {
   state: () => ({
@@ -17,7 +18,8 @@ const authModule = {
         const tokenResult = await result.user?.getIdTokenResult();
         if (!tokenResult) return;
         const { data: tokenData } = await login({ token: tokenResult.token });
-        console.log(tokenData);
+        setToken(tokenData.accessToken);
+        localStorage.setItem("userToken", tokenData.accessToken);
       } catch (e) {
         console.log(e);
       }

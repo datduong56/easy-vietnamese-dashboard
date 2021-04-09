@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-row>
       <v-col cols="5">
-        <v-form @submit.prevent class="form-wrapper">
+        <v-form @submit.prevent="onSubmit" class="form-wrapper">
           <div>
             <h2 class="mb-5">Đăng nhập</h2>
             <v-text-field
@@ -13,6 +13,7 @@
               clearable
               color="warning"
               prepend-inner-icon="mdi-email-outline"
+              v-model="email"
             />
             <v-text-field
               dense
@@ -22,6 +23,7 @@
               clearable
               color="warning"
               prepend-inner-icon="mdi-lock-outline"
+              v-model="password"
             />
             <v-checkbox v-model="rememberMe" color="warning">
               <template v-slot:label>
@@ -29,10 +31,9 @@
               </template>
             </v-checkbox>
             <v-btn
+              type="submit"
               elevation="0"
               color="warning"
-              link
-              to="/"
               class="login-button"
               >Đăng nhập</v-btn
             >
@@ -49,12 +50,21 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapActions, mapState } from "vuex";
 
 export default Vue.extend({
   name: "SignIn",
   data: () => ({
+    email: "",
+    password: "",
     rememberMe: false,
   }),
+  methods: {
+    ...mapActions(["login"]),
+    onSubmit() {
+      this.login({ email: this.email, password: this.password });
+    },
+  },
 });
 </script>
 

@@ -15,7 +15,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "allowJs": true
   },
   "include": [
     "src/**/*.ts",
@@ -23,6 +24,6 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/services/firebase-config.js"  ],
   "exclude": ["node_modules"]
 }

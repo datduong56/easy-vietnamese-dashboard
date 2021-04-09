@@ -27,7 +27,7 @@
         </v-avatar>
         <v-menu offset-y rounded="lg">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn flat text small v-bind="attrs" v-on="on"> Username </v-btn>
+            <v-btn text small v-bind="attrs" v-on="on"> Username </v-btn>
           </template>
           <v-list>
             <v-list-item>

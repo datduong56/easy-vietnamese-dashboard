@@ -9,13 +9,14 @@ const authModule = {
   getters: {},
   mutations: {},
   actions: {
-    async login({ commit }, data) {
+    async login({ commit }: any, data: any) {
       try {
         const result = await firebase
           .auth()
           .signInWithEmailAndPassword(data.email, data.password);
-        const { token } = await result.user?.getIdTokenResult();
-        const { data: tokenData } = await login({ token });
+        const tokenResult = await result.user?.getIdTokenResult();
+        if (!tokenResult) return;
+        const { data: tokenData } = await login({ token: tokenResult.token });
         console.log(tokenData);
       } catch (e) {
         console.log(e);

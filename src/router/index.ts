@@ -13,6 +13,10 @@ const routes: Array<RouteConfig> = [
     path: "/",
     name: "Home",
     component: Home,
+    beforeEnter: (to, from, next) => {
+      const userInfo = localStorage.getItem("userInfo");
+      userInfo ? next() : next("/sign-in");
+    },
   },
   {
     path: "*",
@@ -23,6 +27,10 @@ const routes: Array<RouteConfig> = [
     path: "/sign-in",
     name: "SignIn",
     component: SignIn,
+    beforeEnter: (to, from, next) => {
+      const userInfo = localStorage.getItem("userInfo");
+      userInfo ? next("/") : next();
+    },
   },
   {
     path: "/lessons",

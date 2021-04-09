@@ -14,7 +14,7 @@ const routes: Array<RouteConfig> = [
     name: "Home",
     component: Home,
     beforeEnter: (to, from, next) => {
-      const userInfo = localStorage.getItem("userInfo");
+      const userInfo = localStorage.getItem("userToken");
       userInfo ? next() : next("/sign-in");
     },
   },
@@ -28,7 +28,7 @@ const routes: Array<RouteConfig> = [
     name: "SignIn",
     component: SignIn,
     beforeEnter: (to, from, next) => {
-      const userInfo = localStorage.getItem("userInfo");
+      const userInfo = localStorage.getItem("userToken");
       userInfo ? next("/") : next();
     },
   },

@@ -25,11 +25,14 @@
               prepend-inner-icon="mdi-lock-outline"
               v-model="password"
             />
-            <v-checkbox v-model="rememberMe" color="warning">
+            <!-- <v-checkbox v-model="rememberMe" color="warning">
               <template v-slot:label>
                 <div @click.stop="">Ghi nhớ đăng nhập</div>
               </template>
-            </v-checkbox>
+            </v-checkbox> -->
+            <v-alert v-model="showAlert" type="error">{{
+              alertMessage
+            }}</v-alert>
             <v-btn
               type="submit"
               elevation="0"
@@ -57,7 +60,11 @@ export default Vue.extend({
   data: () => ({
     email: "",
     password: "",
-    rememberMe: false,
+    // rememberMe: false,
+  }),
+  computed: mapState({
+    showAlert: (state) => state.auth.showAlert,
+    alertMessage: (state) => state.auth.alertMessage,
   }),
   methods: {
     ...mapActions(["login"]),

@@ -1,16 +1,30 @@
 import { login } from "@/services/auth";
 import firebase from "@/services/firebase-config.js";
 import { setToken } from "@/services/connection-instance";
+import router from "@/router";
 
 const authModule = {
   state: () => ({
     email: "",
     password: "",
+    error: "",
+    showAlert: false,
+    alertMessage: null,
   }),
   getters: {},
-  mutations: {},
+  mutations: {
+    error(state: any, alertMessage: any) {
+      state.showAlert = true;
+      state.alertMessage = alertMessage;
+    },
+  },
   actions: {
     async login({ commit }: any, data: any) {
+      if (!data.email.length || !data.password.length) {
+        commit("error", "Email hoặc mật khẩu không được để trống");
+        return;
+      }
+
       try {
         const result = await firebase
           .auth()
@@ -20,9 +34,16 @@ const authModule = {
         const { data: tokenData } = await login({ token: tokenResult.token });
         setToken(tokenData.accessToken);
         localStorage.setItem("userToken", tokenData.accessToken);
+        router.push("/");
       } catch (e) {
         console.log(e);
+        commit("error", e.message);
       }
+    },
+
+    logout() {
+      localStorage.removeItem("userToken");
+      router.push("/sign-in");
     },
   },
 };

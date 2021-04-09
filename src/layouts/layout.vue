@@ -34,7 +34,7 @@
               <v-list-item-title>Thông tin cá nhân</v-list-item-title>
             </v-list-item>
             <v-divider />
-            <v-list-item exact link to="/sign-in">
+            <v-list-item @click="logout">
               <v-list-item-title>Đăng xuất</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -52,6 +52,7 @@
 </template>
 
 <script lang="ts">
+import { mapActions } from "vuex";
 import Vue from "vue";
 
 export default Vue.extend({
@@ -72,6 +73,9 @@ export default Vue.extend({
       { text: "Người dùng", route: "/users" },
     ],
   }),
+  methods: {
+    ...mapActions(["logout"]),
+  },
 });
 </script>
 

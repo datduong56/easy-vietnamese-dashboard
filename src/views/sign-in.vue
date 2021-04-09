@@ -63,8 +63,8 @@ export default Vue.extend({
     // rememberMe: false,
   }),
   computed: mapState({
-    showAlert: (state) => state.auth.showAlert,
-    alertMessage: (state) => state.auth.alertMessage,
+    showAlert: (state: any) => state.auth.showAlert,
+    alertMessage: (state: any) => state.auth.alertMessage,
   }),
   methods: {
     ...mapActions(["login"]),

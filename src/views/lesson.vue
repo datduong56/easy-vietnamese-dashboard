@@ -1,38 +1,26 @@
 <template>
   <Layout>
-    <v-card>
-      <v-card-title>
-        <v-btn class="mr-10" color="warning">Thêm mới</v-btn>
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          hide-details
-          outlined
-          label="Tìm kiếm"
-          dense
-          clearable
-        />
-      </v-card-title>
-      <v-data-table
-        dense
-        :headers="headers"
-        :items="desserts"
-        :items-per-page="5"
-        class="elevation-1"
-      >
-        <template v-slot:item.actions="{ item }">
-          <v-icon small class="mr-2" @click="editItem(item)">
-            mdi-pencil
-          </v-icon>
-          <v-icon small class="mr-2" @click="deleteItem(item)">
-            mdi-delete
-          </v-icon>
-          <v-icon small @click="deleteItem(item)"> mdi-information </v-icon>
-        </template>
-        <template v-slot:no-data>
-          <v-btn color="primary" @click="initialize"> Reset </v-btn>
-        </template></v-data-table
-      >
+    <v-card class="mx-auto">
+      <v-list>
+        <v-list-group
+          :value="false"
+          prepend-icon="mdi-book"
+          v-for="n in 5"
+          :key="n"
+        >
+          <template v-slot:activator>
+            <v-list-item-title>Cơ bản {{ n }}</v-list-item-title>
+          </template>
+
+          <v-list-item v-for="m in 5" :key="m">
+            <v-list-item-content>
+              <v-btn text elevation="0" link plain class="lesson">
+                <v-list-item-title> Bài {{ m }} </v-list-item-title>
+              </v-btn>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
+      </v-list>
     </v-card>
   </Layout>
 </template>
@@ -44,49 +32,12 @@ import Layout from "@/layouts/layout.vue";
 export default Vue.extend({
   name: "Lesson",
   components: { Layout },
-  data: () => ({
-    headers: [
-      {
-        text: "Chủ đề",
-        align: "start",
-        value: "name",
-      },
-      { text: "Actions", value: "actions" },
-    ],
-    desserts: [
-      {
-        name: "Frozen Yogurt",
-      },
-      {
-        name: "Frozen Yogurt",
-      },
-      {
-        name: "Frozen Yogurt",
-      },
-      {
-        name: "Frozen Yogurt",
-      },
-      {
-        name: "Frozen Yogurt",
-      },
-      {
-        name: "Frozen Yogurt",
-      },
-      {
-        name: "Frozen Yogurt",
-      },
-      {
-        name: "Frozen Yogurt",
-      },
-      {
-        name: "Frozen Yogurt",
-      },
-      {
-        name: "Frozen Yogurt",
-      },
-    ],
-  }),
+  data: () => ({}),
 });
 </script>
 
-<style></style>
+<style>
+.lesson {
+  text-align: left !important;
+}
+</style>

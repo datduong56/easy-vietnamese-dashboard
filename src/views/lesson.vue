@@ -9,12 +9,19 @@
           :key="n"
         >
           <template v-slot:activator>
-            <v-list-item-title>Cơ bản {{ n }}</v-list-item-title>
+            <v-list-item-title>Độ khó {{ n }}</v-list-item-title>
           </template>
 
           <v-list-item v-for="m in 5" :key="m">
             <v-list-item-content>
-              <v-btn text elevation="0" link plain class="lesson">
+              <v-btn
+                text
+                elevation="0"
+                link
+                plain
+                class="lesson"
+                to="lessons/1/detail"
+              >
                 <v-list-item-title> Bài {{ m }} </v-list-item-title>
               </v-btn>
             </v-list-item-content>

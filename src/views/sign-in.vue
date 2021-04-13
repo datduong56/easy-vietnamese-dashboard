@@ -25,11 +25,18 @@
               prepend-inner-icon="mdi-lock-outline"
               v-model="password"
             />
-            <!-- <v-checkbox v-model="rememberMe" color="warning">
-              <template v-slot:label>
-                <div @click.stop="">Ghi nhớ đăng nhập</div>
-              </template>
-            </v-checkbox> -->
+            <v-dialog v-model="dialog" persistent width="300">
+              <v-card color="warning" dark>
+                <v-card-text>
+                  Đang đăng nhập
+                  <v-progress-linear
+                    indeterminate
+                    color="white"
+                    class="mb-0"
+                  ></v-progress-linear>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
             <v-alert v-model="showAlert" type="error">{{
               alertMessage
             }}</v-alert>
@@ -60,7 +67,7 @@ export default Vue.extend({
   data: () => ({
     email: "",
     password: "",
-    // rememberMe: false,
+    dialog: false,
   }),
   computed: mapState({
     showAlert: (state: any) => state.auth.showAlert,
@@ -69,6 +76,7 @@ export default Vue.extend({
   methods: {
     ...mapActions(["login"]),
     onSubmit() {
+      this.dialog = true;
       this.login({ email: this.email, password: this.password });
     },
   },

@@ -23,11 +23,13 @@
       <v-spacer />
       <div class="username-area">
         <v-avatar size="30" class="mr-3">
-          <v-img src="https://i.pravatar.cc/300" />
+          <v-img :src="avatar" />
         </v-avatar>
         <v-menu offset-y rounded="lg">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn text small v-bind="attrs" v-on="on"> Username </v-btn>
+            <v-btn text small v-bind="attrs" v-on="on">
+              {{ displayName }}
+            </v-btn>
           </template>
           <v-list>
             <v-list-item>
@@ -51,8 +53,8 @@
   </v-app>
 </template>
 
-<script lang="ts">
-import { mapActions } from "vuex";
+<script>
+import { mapActions, mapState } from "vuex";
 import Vue from "vue";
 
 export default Vue.extend({
@@ -71,7 +73,12 @@ export default Vue.extend({
       { text: "Trang chủ", route: "/" },
       { text: "Bài học", route: "/lessons" },
       { text: "Người dùng", route: "/users" },
+      { text: "Video", route: "/videos" },
     ],
+  }),
+  computed: mapState({
+    displayName: (state) => state.auth.displayName,
+    avatar: (state) => state.auth.avatar,
   }),
   methods: {
     ...mapActions(["logout"]),

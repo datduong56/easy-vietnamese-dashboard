@@ -6,7 +6,9 @@ import router from "@/router";
 const authModule = {
   state: () => ({
     email: "",
-    password: "",
+    displayName: "",
+    nation: "",
+    avatar: "",
     error: "",
     showAlert: false,
     alertMessage: null,
@@ -16,6 +18,12 @@ const authModule = {
     error(state: any, alertMessage: any) {
       state.showAlert = true;
       state.alertMessage = alertMessage;
+    },
+    setUser(state: any, payload: any) {
+      state.email = payload.email;
+      state.displayName = payload.displayName;
+      state.nation = payload.nation;
+      state.avatar = payload.avatar;
     },
   },
   actions: {
@@ -31,8 +39,12 @@ const authModule = {
           .signInWithEmailAndPassword(data.email, data.password);
         const tokenResult = await result.user?.getIdTokenResult();
         if (!tokenResult) return;
-        const { data: tokenData } = await login({ token: tokenResult.token });
+        const { data: tokenData } = await login({
+          token: tokenResult.token,
+          loginMethod: "Email",
+        });
         setToken(tokenData.accessToken);
+        commit("setUser", tokenData.user);
         localStorage.setItem("userToken", tokenData.accessToken);
         router.push("/");
       } catch (e) {

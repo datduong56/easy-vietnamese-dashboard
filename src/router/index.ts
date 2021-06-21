@@ -5,6 +5,7 @@ import Home from "@/views/home.vue";
 import NotFound from "@/views/not-found.vue";
 import SignIn from "@/views/sign-in.vue";
 import Lesson from "@/views/lesson.vue";
+import Videos from "@/views/videos.vue";
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,11 @@ const routes: Array<RouteConfig> = [
     path: "/lessons",
     name: "Lesson",
     component: Lesson,
+  },
+  {
+    path: "/videos",
+    name: "Videos",
+    component: Videos,
   },
 ];
 

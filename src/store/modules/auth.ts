@@ -1,5 +1,5 @@
 import { login } from "@/services/auth";
-import firebase from "@/services/firebase-config.js";
+import firebase from "@/services/firebase-config";
 import { setToken } from "@/services/connection-instance";
 import router from "@/router";
 
